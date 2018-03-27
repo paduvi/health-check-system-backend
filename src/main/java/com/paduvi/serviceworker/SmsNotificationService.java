@@ -57,7 +57,7 @@ public class SmsNotificationService implements NotificationService {
 			System.out.println("\n" + response.getStatusLine());
 			HttpEntity entity = response.getEntity();
 
-			if (entity != null) {
+			if (response.getStatusLine().getStatusCode() == 200 && entity != null) {
 				String content = EntityUtils.toString(entity);
 
 				System.out.println(content + "\n");
@@ -89,6 +89,9 @@ public class SmsNotificationService implements NotificationService {
 						break;
 					}
 				}
+			} else {
+				error = EntityUtils.toString(entity);
+				System.out.println(error + "\n");
 			}
 			EntityUtils.consume(entity);
 

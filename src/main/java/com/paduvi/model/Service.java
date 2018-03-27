@@ -13,11 +13,14 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.paduvi.repository.converter.OptionToStringConverter;
 
 @Entity
 @Table(name = "serviceTbl")
+@DynamicUpdate
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Service implements Serializable {
 

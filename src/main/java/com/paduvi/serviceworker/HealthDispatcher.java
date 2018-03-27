@@ -138,7 +138,9 @@ public class HealthDispatcher {
 
 					if (job.isDifferent()) {
 						healthJobRepository.save(job);
-						sendNotification(service, job);
+						if (service.getUser().isOnNotify()) {
+							sendNotification(service, job);
+						}
 					}
 					
 					if (job.getRetry() == 0) {
