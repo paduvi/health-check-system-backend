@@ -1,0 +1,30 @@
+{
+	"type": "object",
+	"properties": {
+		"recommend": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/item"
+			}
+		},
+		"algid": {
+			"type": "integer"
+		}
+	},
+	"required": [
+		"recommend",
+		"algid"
+	],
+	"additionalProperties": true,
+	"definitions": {
+		"item": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer"
+				}
+			},
+			"additionalItems": true
+		}
+	}
+}

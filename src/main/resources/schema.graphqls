@@ -1,0 +1,72 @@
+type User {
+    id: ID!
+    name: String!
+    tel: String
+    mail: String
+    onNotify: Boolean
+}
+
+type ServiceAdvancedOption {
+	autoRestart: Boolean
+	activeUrl: String
+	pollDurationInSeconds: Int
+	payloadSchema: String
+}
+
+type Service {
+	id: ID!
+	name: String!
+	pingUrl: String!
+	healthy: Boolean
+	watching: Boolean
+	user: User
+	lastChecked: String
+	advancedOption: ServiceAdvancedOption
+}
+
+input UserInput {
+	id: ID!
+	name: String!
+	tel: String
+    mail: String
+    onNotify: Boolean
+}
+
+input ServiceAdvancedOptionInput {
+	autoRestart: Boolean
+	activeUrl: String
+	pollDurationInSeconds: Int
+	payloadSchema: String
+}
+
+input ServiceInput {
+	id: ID
+	name: String!
+	pingUrl: String!
+	healthy: Boolean
+	watching: Boolean
+	user: UserInput
+	lastChecked: String
+	advancedOption: ServiceAdvancedOptionInput
+}
+
+type Log { 
+	id: String! 
+	serviceId: Int! 
+	healthy: Boolean 
+	createdAt: String
+	executedAt: String
+	message: String 
+} 
+
+type Query {
+    services: [Service]
+    service(id: ID!): Service
+    logs(serviceId: Int!): [Log]! 
+}
+
+type Mutation { 
+	createService(service: ServiceInput) : Service!
+	updateService(id: ID!, service: ServiceInput) : Service! 
+	deleteService(id: ID!) : Boolean 
+}

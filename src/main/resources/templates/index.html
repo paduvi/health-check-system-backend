@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
+<title>Healthy Check System</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/index.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css" />
+</head>
+<body>
+	<div id="root"></div>
+
+	<noscript>You need to enable JavaScript to run this app.</noscript>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+			[# th:if="${_csrf}"]
+			window['_csrf'] = /*[[${_csrf.token}]]*/'_csrf.token';
+			window['_csrf_header'] = /*[[${_csrf.headerName}]]*/'X-CSRF-TOKEN';
+			[/]
+			window['BACKEND_API'] = '/api';
+		/*]]>*/
+	</script>
+	<script src="/resources/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<link rel="shortcut icon" href="/favicon.ico">
+<title th:text="${error}">Error page title</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/error.css" />
+</head>
+
+<body>
+
+	<div class="error">
+		<div>
+			<h1 th:text="${status}?: '500'">500</h1>
+			<div class='desc'>
+				<h2 th:text="${error}?: 'Oops. Something happened!'"></h2>
+			</div>
+		</div>
+
+		<p>Application has encountered an error. Please contact support
+			on...</p>
+		<div th:if="${exception} or (${message} and ${message.length() != 0})">
+
+			<blockquote>
+				<i>Note: You would never generate a page that displays a Java
+					exception to an end-user in a real application</i>
+			</blockquote>
+
+			<div th:utext="'&lt;!--'" th:remove="tag"></div>
+			<div th:utext="'Exception: ' + ${message}" th:remove="tag">${message}</div>
+			<ul th:remove="tag">
+				<li th:each="ste : ${trace}" th:remove="tag"><span
+					th:utext="${ste}" th:remove="tag">${ste}</span></li>
+			</ul>
+			<div th:utext="'--&gt;'" th:remove="tag"></div>
+		</div>
+
+		<p
+			th:unless="${exception} or (${message} and ${message.length() != 0})">
+			Cause unknown (no exception details available)</p>
+	</div>
+
+</body>
+</html>
