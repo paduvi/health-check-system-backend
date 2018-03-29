@@ -33,7 +33,7 @@ public class Service implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "name", unique = true)
+	@Column(name = "name", unique = true, updatable=false)
 	private String name;
 
 	@Column(name = "pingUrl", nullable = false)

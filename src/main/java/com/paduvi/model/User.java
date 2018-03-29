@@ -9,10 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "userTbl")
+@DynamicUpdate
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
 
@@ -25,7 +28,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(name = "name", unique = true)
+	@Column(name = "name", unique = true, updatable=false)
 	private String name;
 
 	@Column(name = "tel")
