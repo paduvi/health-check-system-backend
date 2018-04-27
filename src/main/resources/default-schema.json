@@ -12,8 +12,7 @@
 		}
 	},
 	"required": [
-		"recommend",
-		"algid"
+		"recommend"
 	],
 	"additionalProperties": true,
 	"definitions": {
